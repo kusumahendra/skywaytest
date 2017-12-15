@@ -4,11 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <title>Sky Way Test</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -22,7 +18,7 @@
         <div class="grid-container" id="main-content">
             <div class="grid-x align-middle h-100">
                 <div class="cell">
-                    <div class="blurb-container grid-x grid-margin-x grid-padding-x grid-padding-y text-center">
+                    <div class="blurb-container grid-x grid-margin-x grid-margin-y grid-padding-x grid-padding-y text-center">
                         <div class="medium-4 cell">
                             <span class="fa-stack fa-3x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -161,22 +157,26 @@
         <script src="{{ asset('js/app.js') }}"></script>
         <script>
             jQuery(function($){
-                    inputString = '<div class="input-group">';
-                    inputString +=  '<input type="number"  class="input-group-field" name="number[]" placeholder="Your number here (must be numeric)"></input>';
-                        inputString += '<div class="input-group-button">';
-                            inputString += '<button href="#" class=" button alert input-remove-button">';
-                                inputString += '<i class="fa fa-remove fa-inverse"></i>';
-                            inputString += '</button>';
-                        inputString += '</div>';
-                    inputString +='</div>';
-                // $('.input-remove-button').on('click',function(){
-                // })
+                inputString = '<div class="input-group">';
+                inputString +=  '<input type="number"  class="input-group-field" name="number[]" placeholder="Your number here (must be numeric)"></input>';
+                    inputString += '<div class="input-group-button">';
+                        inputString += '<button href="#" class=" button alert input-remove-button">';
+                            inputString += '<i class="fa fa-remove fa-inverse"></i>';
+                        inputString += '</button>';
+                    inputString += '</div>';
+                inputString +='</div>';
+
+                // test-3-form remove input
                 $('body').on('click', '.input-remove-button', function() {
                     $(this).closest(".input-group").remove();
                 });
+
+                // test-3-form add input
                 $('#add-number-button').click(function(){
                     $('#input-container').append(inputString);
                 })
+
+                // test-1-form submit event handler
                 $('#test-1-form').submit(function(e){
                     $data = $(this).serialize();
                     $.ajax({
@@ -205,6 +205,8 @@
                         },
                     })
                 })
+
+                // test-2-form submit event handler
                 $('#test-2-form').submit(function(e){
                     $data = $(this).serialize();
                     $.ajax({
@@ -235,6 +237,8 @@
                         },
                     })
                 })
+
+                // test-3-form submit event handler
                 $('#test-3-form').submit(function(e){
                     $data = $(this).serialize();
                     $.ajax({
