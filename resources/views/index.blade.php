@@ -68,7 +68,9 @@
             <form id="test-1-form" class="ajax-form">
                 <textarea name="sentence" id="" cols="30" rows="5" placeholder="Your sentence here"></textarea>
                 <div class="text-right">
-                <input type="submit" class="button primary text-right">
+                <button type="submit" class="button primary text-right">
+                    Submit <i class="fa fa-circle-o-notch fa-spin fa-fw fa-inverse hide"></i>
+                </button>
                 </div>
             </form>
             <div class="result callout secondary hide"></div>
@@ -86,7 +88,10 @@
             <form id="test-2-form" class="ajax-form">
                 <input type="number" name="limit" placeholder="Your N number here (must be numeric)"></input>
                 <div class="text-right">
-                <input type="submit" class="button primary text-right">
+                {{-- <input type="submit" class="button primary text-right"> --}}
+                <button type="submit" class="button primary text-right">
+                    Submit <i class="fa fa-circle-o-notch fa-spin fa-fw fa-inverse hide"></i>
+                </button>
                 </div>
             </form>
             <div class="result callout secondary hide"></div>
@@ -131,7 +136,9 @@
                 <div class="text-right">
 
                 <a href="#" class="button secondary" id="add-number-button">Add Number</a>
-                <input type="submit" class="button primary text-right">
+                <button type="submit" class="button primary text-right">
+                    Submit <i class="fa fa-circle-o-notch fa-spin fa-fw fa-inverse hide"></i>
+                </button>
                 </div>
             </form>
             <div class="result callout secondary hide">
@@ -178,6 +185,9 @@
 
                 // test-1-form submit event handler
                 $('#test-1-form').submit(function(e){
+                    $button = $(this).find('button[type="submit"]');
+                    $button.attr("disabled", true);
+                    $button.find('.fa-spin').removeClass('hide');
                     $data = $(this).serialize();
                     $.ajax({
                         url: '{{ url('/test-1') }}',
@@ -195,11 +205,15 @@
                                 $('#test-1-modal .result').html('<p><strong>Reversed sentence:</strong><br>'+json['result']+'</p>');
                                 $('#test-1-modal .result').removeClass('hide');
                                 $('#test-3-modal .result-error').addClass('hide');
+                                $button.attr("disabled", false);
+                                $button.find('.fa-spin').addClass('hide');
                                 console.log(data);
                             }
                             else{
                                 $('#test-1-modal .result').addClass('hide');
                                 $('#test-1-modal .result-error').removeClass('hide');
+                                $button.attr("disabled", false);
+                                $button.find('.fa-spin').addClass('hide');
                                 console.log(data);
                             }
                         },
@@ -208,6 +222,9 @@
 
                 // test-2-form submit event handler
                 $('#test-2-form').submit(function(e){
+                    $button = $(this).find('button[type="submit"]');
+                    $button.attr("disabled", true);
+                    $button.find('.fa-spin').removeClass('hide');
                     $data = $(this).serialize();
                     $.ajax({
                         url: '{{ url('/test-2') }}',
@@ -225,13 +242,15 @@
                                 $('#test-2-modal .result').html('<p><strong>Prime number found:</strong><br>'+json['result']+'</p>');
                                 $('#test-2-modal .result').removeClass('hide');
                                 $('#test-2-modal .result-error').addClass('hide');
-
+                                $button.attr("disabled", false);
+                                $button.find('.fa-spin').addClass('hide');
                                 console.log(data);
                             }
                             else{
                                 $('#test-2-modal .result').addClass('hide');
                                 $('#test-2-modal .result-error').removeClass('hide');
-                                // $('#form_modal').foundation('close');
+                                $button.removeAttr("disabled");
+                                $button.find('.fa-spin').removeClass('hide');
                                 console.log(data);
                             }
                         },
@@ -240,6 +259,9 @@
 
                 // test-3-form submit event handler
                 $('#test-3-form').submit(function(e){
+                    $button = $(this).find('button[type="submit"]');
+                    $button.attr("disabled", true);
+                    $button.find('.fa-spin').removeClass('hide');
                     $data = $(this).serialize();
                     $.ajax({
                         url: '{{ url('/test-3') }}',
@@ -261,12 +283,15 @@
                                 $('#test-3-modal .result #average').html(json['average']);
                                 $('#test-3-modal .result').removeClass('hide');
                                 $('#test-3-modal .result-error').addClass('hide');
+                                $button.attr("disabled", false);
+                                $button.find('.fa-spin').addClass('hide');
                                 console.log(data);
                             }
                             else{
                                 $('#test-3-modal .result').addClass('hide');
                                 $('#test-3-modal .result-error').removeClass('hide');
-                                // $('#form_modal').foundation('close');
+                                $button.attr("disabled", false);
+                                $button.find('.fa-spin').addClass('hide');
                                 console.log(data);
                             }
                         },

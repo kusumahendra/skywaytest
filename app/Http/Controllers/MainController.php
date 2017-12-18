@@ -63,6 +63,7 @@ class MainController extends Controller
 	 * @return json
 	 */
 	public function testThreeWorker(Request $request){
+		// dd($request->number);
 		$numbers = $request->number;
 		$numbers = array_filter($numbers);
 		if (count($numbers) <= 0) {
@@ -74,7 +75,8 @@ class MainController extends Controller
 		$average = $this->average($numbers);
 		$median = $this->median($numbers);
 		return response()->json([
-			'result'  => $numbers,
+			'result'  => implode(', ',$numbers),
+			'numbers' => $numbers,
 			'highest' => end($numbers),
 			'lowest'  => $numbers[0],
 			'median' => $median,

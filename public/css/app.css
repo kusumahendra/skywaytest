@@ -8520,3 +8520,7 @@ body {
   }
 }
 
+.button.primary .fa-spin {
+  color: #fefefe;
+}
+
